@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors List</title>
+</head>
+<body>
+    <h1>Author List</h1>
+    
+    <!-- Check if there are any authors -->
+    {% if authors %}
+        <ul>
+            {% for author in authors %}
+                <li>
+                    <h2>{{ author.last_name }}, {{ author.first_name }}</h2>
+                    
+                    <!-- Display date of birth -->
+                    <p><strong>Date of Birth:</strong> {{ author.date_of_birth|date:"F j, Y" }}</p>
+                    
+                    <!-- Display date of death if available -->
+                    {% if author.date_of_death %}
+                        <p><strong>Date of Death:</strong> {{ author.date_of_death|date:"F j, Y" }}</p>
+                    {% endif %}
+                    
+                    <!-- Link to the detail page of the author -->
+                    <p><a href="{{ author.get_absolute_url }}">View details</a></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No authors found.</p>
+    {% endif %}
+</body>
+</html>

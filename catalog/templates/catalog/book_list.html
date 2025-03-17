@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+</head>
+<body>
+    <h1>Books List</h1>
+    
+    {% if book_list %}
+        <ul>
+            {% for book in book_list %}
+                <li>
+                    <h2>{{ book.title }}</h2>
+                    <p><strong>Author:</strong> {{ book.author }}</p>
+                    <p><strong>Summary:</strong> {{ book.summary }}</p>
+                    <p><strong>Genres:</strong> {{ book.display_genre }}</p>
+                    <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+                    <p><strong>Language:</strong> {{ book.language }}</p>
+                    <p><a href="{{ book.get_absolute_url }}">View details</a></p>
+                    <p><a href="{{ book.get_absolute_url }}">Borrow</a></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books found.</p>
+    {% endif %}
+</body>
+</html>
